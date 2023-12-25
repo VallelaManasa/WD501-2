@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration form</title>
+        <style>
+            .A{
+                padding:50px;
+                background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC6drQJIEQSPsN5YTgu188b69ErFzxT77clA&usqp=CAU') ;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+            .box:hover {
+                 background-color:grey;
+                color: white;
+            }
+            .box{
+                padding:50px;
+                background-color:darkseagreen;
+                width:500px;
+                height:500px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius:20%;
+                box-shadow: 8px  8px black;
+            }
+            .box1{
+                padding:50px;
+                background-color:darkseagreen;
+                width:500px;
+                height:300px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius:20%;
+                box-shadow: 8px  8px black;
+            }
+            .box1:hover {
+                 background-color:grey;
+                color: white;
+            }
+            h2{
+                text-align:center;
+            }
+            .heading{
+                font-size:25px;
+                top:10px;
+                
+            }
+            #name{
+                width:300px;
+                height:40px;
+                margin-top:20px;
+                border-radius:40%;
+                text-align:center;
+                box-shadow: 6px 6px tomato;
+                
+            }
+            #email{
+                width:300px;
+                height:40px;
+                margin-top:20px;
+                border-radius:40%;
+                text-align:center;
+                box-shadow: 6px 6px tomato;
+            }
+            #password{
+                width:300px;
+                height:40px;
+                margin-top:20px;
+                border-radius:40%;
+                text-align: center;
+                box-shadow: 6px 6px tomato;
+            }
+            #dob{
+                width:300px;
+                height:40px;
+                margin-top:20px;
+                border-radius:40%;
+                text-align:center;
+                box-shadow: 6px 6px tomato;
+            }
+            .submitbutton{
+                margin-left:auto;
+                margin-right:auto;
+                display:block;
+                border-radius:20%;
+                width:80px;
+                height:40px;
+                background-color: olive;                   
+            }
+            th,td{
+                padding:15px;
+            }
+            #table{
+                width:100%;
+                border:3;
+            }
+            .reg{
+                text-shadow:2px 2px 8px #FF0000;
+                font-style:italic;
+            }
+        </style>
+    </head>
+    <body class="A">
+        <div class="box">
+            <h2 class="reg">Registration Form...</h2>
+            <hr>
+            <form id="form" action="/">
+            <label class="heading" for="name">Name : </label>
+            <input type="text" name="name" placeholder="Enter your Name...." id="name" required>
+            <br><br>
+            <label class="heading" for="email">Email : </label>
+            <input type="email" name="email" placeholder="Enter valid email...." id="email" required>
+            <br><br>
+            <label class="heading" for="password">Password : </label>
+            <input type="password" name="password" placeholder="Password please......" id="password" required>
+            <br><br>
+            <label class="heading" for="dob">Date of Birth : </label>
+            <input type="date" name="dob" placeholder="Date of birth.." id="dob" min="1980-04-30" max="2005-04-30" required> 
+            <br><br>
+            <input type="checkbox" name="checkbox" id="checkbox" required>
+            <label class="heading" for="checkbox">Accept Terms & Conditions </label>
+            <br><br>
+            <button onclick="result()" type="submit" class="submitbutton" id="submit"><strong>Submit</strong></button>
+            </form>
+            <h2>Please fill above details and click submit button</h2>
+        </div>
+        <br><br>
+        <div class="box1">
+            <h2 style="text-align:center;">Entries</h2>
+            <hr>
+            <table id="table">
+               <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>dob</th>
+                <th>accept terms?</th>
+               </tr>
+            </table>
+        </div>
+        <script type="text/javascript" >
+            var form = document.getElementById('form');
+            var tableBody = document.querySelector('#table tbody');
+            form.addEventListener('submit',function(event){
+                event.preventDefault();
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var dob = document.getElementById('dob').value;
+                var checkbox = document.getElementById('checkbox').checked;
+                localStorage.setItem("Name",name);
+                localStorage.setItem("Email", email);
+                localStorage.setItem("Password", password);
+                localStorage.setItem("Dob", dob);
+                localStorage.setItem("accept terms?", checkbox);
+            var newRow = document.createElement('tr');
+            newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${email}</td>
+            <td>${password}</td>
+            <td>${dob}</td>
+            <td>${checkbox ? 'Yes' : 'No'}</td>`;
+            tableBody.appendChild(newRow);
+            form.reset();
+            });
+        </script>
+    </body>
+</html>
